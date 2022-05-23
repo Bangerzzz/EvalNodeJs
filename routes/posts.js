@@ -25,5 +25,14 @@ router.post('/', async (req,res) => {
 		res.json({message : err});
 	}
 });
+//Get specific post
+router.get('/:tacheId', async (req,res) => {
+	try{
+		const tache = await Tache.findById(req.params.tacheId);
+		res.json(tache);
+	} catch(err){
+		res.json({ message: err});
+	};
+});
 
 module.exports = router;
