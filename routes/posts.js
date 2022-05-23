@@ -1,9 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Tache = require('../models/Tache');
+const Joi = require("joi");
 
 //Route Get
 router.get('/', async (req,res) => {
+    const schema = Joi.Tache({
+        description: Joi.string().required(),
+        faite: Joi.boolean().required(),
+    });
 	try{
 		const taches = await Tache.find();
 		res.json(taches);
@@ -14,6 +19,10 @@ router.get('/', async (req,res) => {
 
 //Route Post
 router.post('/', async (req,res) => {
+    const schema = Joi.Tache({
+        description: Joi.string().required(),
+        faite: Joi.boolean().required(),
+    });
 	const tache = new Tache({
 		description: req.body.description,
 		faite: req.body.faite
@@ -27,6 +36,10 @@ router.post('/', async (req,res) => {
 });
 //Get specific tache
 router.get('/:tacheId', async (req,res) => {
+    const schema = Joi.Tache({
+        description: Joi.string().required(),
+        faite: Joi.boolean().required(),
+    });
 	try{
 		const tache = await Tache.findById(req.params.tacheId);
 		res.json(tache);
@@ -37,6 +50,10 @@ router.get('/:tacheId', async (req,res) => {
 
 //delete specific tache
 router.delete('/:tacheId', async(req,res) => {
+    const schema = Joi.Tache({
+        description: Joi.string().required(),
+        faite: Joi.boolean().required(),
+    });
 	try{
 		const removedTache = await Tache.remove({_id : req.params.tacheId}); //id_ needs to match req.params.postId
 		res.json(removedTache);
@@ -47,6 +64,10 @@ router.delete('/:tacheId', async(req,res) => {
 
 //update specific tache
 router.patch('/:tacheId',async(req,res) => {
+    const schema = Joi.Tache({
+        description: Joi.string().required(),
+        faite: Joi.boolean().required(),
+    });
 	try{
 		const updatedTache = await Tache.updateOne(
 			{_id : req.params.tacheId},
