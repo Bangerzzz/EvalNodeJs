@@ -25,12 +25,22 @@ router.post('/', async (req,res) => {
 		res.json({message : err});
 	}
 });
-//Get specific post
+//Get specific tache
 router.get('/:tacheId', async (req,res) => {
 	try{
 		const tache = await Tache.findById(req.params.tacheId);
 		res.json(tache);
 	} catch(err){
+		res.json({ message: err});
+	};
+});
+
+//delete specific tache
+router.delete('/:tacheId', async(req,res) => {
+	try{
+		const removedTache = await Tache.remove({_id : req.params.postId}); //id_ needs to match req.params.postId
+		res.json(removedTache);
+	}catch(err){
 		res.json({ message: err});
 	};
 });
