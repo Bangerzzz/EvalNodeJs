@@ -38,8 +38,21 @@ router.get('/:tacheId', async (req,res) => {
 //delete specific tache
 router.delete('/:tacheId', async(req,res) => {
 	try{
-		const removedTache = await Tache.remove({_id : req.params.postId}); //id_ needs to match req.params.postId
+		const removedTache = await Tache.remove({_id : req.params.tacheId}); //id_ needs to match req.params.postId
 		res.json(removedTache);
+	}catch(err){
+		res.json({ message: err});
+	};
+});
+
+//update specific tache
+router.patch('/:tacheId',async(req,res) => {
+	try{
+		const updatedTache = await Tache.updateOne(
+			{_id : req.params.tacheId},
+			{ $set: {description: req.body.description} }
+		);
+		res.json(updatedTache);
 	}catch(err){
 		res.json({ message: err});
 	};
