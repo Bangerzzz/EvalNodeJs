@@ -5,7 +5,7 @@ const Joi = require("joi");
 
 //Route Get
 router.get('/', async (req,res) => {
-    const schema = Joi.Tache({
+    const schema = Joi.object({
         description: Joi.string().required(),
         faite: Joi.boolean().required(),
     });
@@ -19,7 +19,7 @@ router.get('/', async (req,res) => {
 
 //Route Post
 router.post('/', async (req,res) => {
-    const schema = Joi.Tache({
+    const schema = Joi.object({
         description: Joi.string().required(),
         faite: Joi.boolean().required(),
     });
@@ -36,7 +36,7 @@ router.post('/', async (req,res) => {
 });
 //Get specific tache
 router.get('/:tacheId', async (req,res) => {
-    const schema = Joi.Tache({
+    const schema = Joi.object({
         description: Joi.string().required(),
         faite: Joi.boolean().required(),
     });
@@ -50,7 +50,7 @@ router.get('/:tacheId', async (req,res) => {
 
 //delete specific tache
 router.delete('/:tacheId', async(req,res) => {
-    const schema = Joi.Tache({
+    const schema = Joi.object({
         description: Joi.string().required(),
         faite: Joi.boolean().required(),
     });
